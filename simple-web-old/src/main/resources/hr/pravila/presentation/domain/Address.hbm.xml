@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="hr.pravila.presentation.old.domain">
+	<class name="Address" table="ADDRESS">
+		<id column="ID" name="id">
+			<generator class="identity" />
+		</id>
+		<property name="city">
+			<column name="CITY" length="20" />
+		</property>
+		<property name="zipCode">
+			<column name="ZIP_CODE" length="10" />
+		</property>
+		<property name="streetName">
+			<column name="STREET_NAME" length="20" />
+		</property>
+		<property name="streetNumber">
+			<column name="STREET_NUMBER" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>

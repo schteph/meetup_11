@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	<bean id="propsResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<value>
+				/user=findAll
+				/user/search=findByIdentificationNumber
+				/user/save=save
+			</value>
+		</property>
+	</bean>
+	
+	<bean name="multiActionController"
+		class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+		<property name="methodNameResolver" ref="propsResolver" />
+		<property name="delegate" ref="userControllerDelegate" />
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/user=multiActionController
+				/user/search=multiActionController
+				/user/save=multiActionController
+			</value>
+		</property>
+	</bean>	
+	
+</beans>
